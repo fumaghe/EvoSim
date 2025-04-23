@@ -50,7 +50,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
     }, { positions: [] as string[], maxOverall: undefined as number | undefined });
 
   return (
-    <div className="w-full bg-surface rounded-12 p-4 mt-6">
+    <div className="w-full bg-surface rounded-12 p-4 mt-6 overflow-x-hidden">
       <div className="space-y-6">
         {/* Basic Filters */}
         <div className="flex flex-wrap gap-4 items-center">
@@ -73,45 +73,48 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
             )}
           </div>
           
-          <div className="relative min-w-[200px]">
-            <Filter size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-dark" />
-            <select
-              value={filters.position}
-              onChange={(e) => setFilters(prev => ({ ...prev, position: e.target.value }))}
-              className="w-full bg-surface-dark rounded-24 px-10 py-2 text-text-light appearance-none focus:outline-none focus:ring-2 focus:ring-primary"
-            >
-              {positions.map(pos => (
-                <option key={pos} value={pos === 'All' ? '' : pos}>{pos}</option>
-              ))}
-            </select>
-          </div>
           
-          <div className="relative min-w-[200px]">
-            <Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-dark" />
-            <input
-              type="date"
-              placeholder="Unlock Date From"
-              value={filters.unlockDateFrom}
-              onChange={(e) => setFilters(prev => ({ ...prev, unlockDateFrom: e.target.value }))}
-              className="w-full bg-surface-dark rounded-24 px-10 py-2 text-text-light focus:outline-none focus:ring-2 focus:ring-primary"
-            />
-          </div>
           
-          <div className="relative min-w-[200px]">
-            <Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-dark" />
-            <input
-              type="date"
-              placeholder="Expires Before"
-              value={filters.expiresBefore}
-              onChange={(e) => setFilters(prev => ({ ...prev, expiresBefore: e.target.value }))}
-              className="w-full bg-surface-dark rounded-24 px-10 py-2 text-text-light focus:outline-none focus:ring-2 focus:ring-primary"
-            />
-          </div>
         </div>
+        <div className="w-full flex flex-row flex-wrap gap-2">
+        <div className="relative grow-[1] min-w-[100px]">
+              <Filter size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-dark" />
+              <select
+                value={filters.position}
+                onChange={(e) => setFilters(prev => ({ ...prev, position: e.target.value }))}
+                className="w-full bg-surface-dark rounded-24 px-10 py-2 text-text-light appearance-none focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                {positions.map(pos => (
+                  <option key={pos} value={pos === 'All' ? '' : pos}>{pos}</option>
+                ))}
+              </select>
+            </div>
+            <div className="relative grow-[1] min-w-[100px]">
+              <Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-dark" />
+              <input
+                type="date"
+                placeholder="Unlock Date From"
+                value={filters.unlockDateFrom}
+                onChange={(e) => setFilters(prev => ({ ...prev, unlockDateFrom: e.target.value }))}
+                className="w-full bg-surface-dark rounded-24 px-10 py-2 text-text-light focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+            <div className="relative grow-[1] min-w-[100px]">
+              <Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-dark" />
+              <input
+                type="date"
+                placeholder="Expires Before"
+                value={filters.expiresBefore}
+                onChange={(e) => setFilters(prev => ({ ...prev, expiresBefore: e.target.value }))}
+                className="w-full bg-surface-dark rounded-24 px-10 py-2 text-text-light focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+        </div>
+        
 
         {/* Evolution Requirements */}
         {filters.selectedEvolutions.length > 0 && (
-          <div className="border-t border-surface-dark pt-4">
+          <div className="border-t border-surface-dark pt-4 mt-4">
             <h3 className="text-text-light font-poppins text-sm mb-3 flex items-center">
               <Star size={16} className="mr-2" />
               Evolution Requirements

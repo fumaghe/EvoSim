@@ -59,16 +59,22 @@ const EvolutionsCarousel: React.FC<EvolutionsCarouselProps> = ({
       <div className="relative">
         <div 
           ref={scrollRef}
-          className="flex overflow-x-auto gap-4 md:gap-6 pb-2 scrollbar-hide"
+          className="flex overflow-x-auto gap-4 md:gap-6 pb-2 pt-2 scrollbar-hide px-4 md:px-6"
         >
-          {evolutions.map(evolution => (
-            <EvolutionCard 
-              key={evolution.id} 
-              evolution={evolution}
-              isSelected={selectedEvolutions.includes(evolution.id)}
-              onSelect={onSelectEvolution}
-            />
-          ))}
+          <div className='flex gap-4 md:gap-6'>
+            {evolutions.map(evolution => (
+              <div key={evolution.id} className='pt-6'>
+                <EvolutionCard
+                  evolution={evolution}
+                  isSelected={selectedEvolutions.includes(evolution.id)}
+                  onSelect={onSelectEvolution}
+                />
+              </div>
+            ))}
+            <div>
+            </div>
+          </div>
+          
         </div>
         
         <button 

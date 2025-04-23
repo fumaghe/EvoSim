@@ -42,14 +42,14 @@ const PlayerDetail: React.FC<PlayerDetailProps> = ({ player, evolutions, onBack 
   };
 
   return (
-    <div className="w-full flex flex-col lg:flex-row mt-24 gap-6">
+    <div className="w-full flex flex-col md:flex-row mt-12 md:mt-24 gap-4 md:gap-6">
       <button 
         onClick={onBack}
-        className="lg:hidden flex items-center text-primary mb-4"
+        className="md:hidden flex items-center text-primary mb-4"
       >
         <ArrowLeft size={20} className="mr-2" />
         Back to Players
-      </button>
+      </button> 
 
       {/* Left Panel */}
       <div className="w-full lg:w-1/3 bg-surface-dark p-6 rounded-16">
@@ -78,7 +78,7 @@ const PlayerDetail: React.FC<PlayerDetailProps> = ({ player, evolutions, onBack 
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-2 md:gap-4">
           {Object.entries(player.stats).map(([stat, value]) => (
             <div key={stat} className="flex items-center">
               {getStatIcon(stat)}
@@ -89,7 +89,7 @@ const PlayerDetail: React.FC<PlayerDetailProps> = ({ player, evolutions, onBack 
 
         <div className="mt-6 pt-6 border-t border-background">
           <h3 className="font-poppins text-lg text-text-light mb-3">PlayStyles</h3>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1 md:gap-2">
             {player.playStyles.normal.map(style => (
               <span key={style} className="text-sm bg-surface text-text-dark px-3 py-1 rounded-full">
                 {style}
@@ -104,12 +104,12 @@ const PlayerDetail: React.FC<PlayerDetailProps> = ({ player, evolutions, onBack 
         </div>
       </div>
 
-      {/* Right Panel */}
-      <div className="w-full lg:w-2/3 bg-background p-6 rounded-16 relative">
+      {/* Right Panel  */}
+      <div className="w-full md:w-2/3 bg-background p-4 md:p-6 rounded-16 relative">
         <h2 className="font-poppins text-2xl text-text-light mb-6">Available Evolution Paths</h2>
 
         {playerEvolutions.length > 0 ? (
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             {playerEvolutions.map((evo, index) => (
               <div key={evo.id} className="relative">
                 {index < playerEvolutions.length - 1 && (
@@ -124,11 +124,11 @@ const PlayerDetail: React.FC<PlayerDetailProps> = ({ player, evolutions, onBack 
                     <h3 className="font-poppins text-xl text-primary">{evo.name}</h3>
                   </div>
                   
-                  <div className="flex flex-wrap gap-4 mb-3">
-                    <div className="flex items-center text-text-dark text-sm italic">
+                  <div className="flex flex-wrap gap-2 md:gap-4 mb-3">
+                    <div className="flex items-center text-text-dark text-xs md:text-sm italic">
                       <Calendar size={14} className="mr-1" />
                       <span>Unlock: {formatDate(evo.unlockDate)}</span>
-                    </div>
+                    </div> 
                     <div className="flex items-center text-text-dark text-sm italic">
                       <Clock size={14} className="mr-1" />
                       <span>Expires: {formatDate(evo.expiryDate)}</span>
@@ -146,7 +146,7 @@ const PlayerDetail: React.FC<PlayerDetailProps> = ({ player, evolutions, onBack 
                   
                   <div>
                     <h4 className="font-poppins text-sm text-text-light mb-2">Stat Improvements:</h4>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                       {Object.entries(evo.effects).map(([stat, boost]) => (
                         <div key={stat} className="flex items-center">
                           {getStatIcon(stat, 16)}
@@ -177,8 +177,8 @@ const PlayerDetail: React.FC<PlayerDetailProps> = ({ player, evolutions, onBack 
         )}
 
         {playerEvolutions.length > 0 && (
-          <div className="fixed bottom-0 left-0 right-0 lg:absolute lg:bottom-6 lg:left-6 lg:right-6 bg-primary p-3 rounded-t-lg lg:rounded-8">
-            <p className="text-center font-poppins font-bold text-background">
+          <div className="fixed bottom-0 left-0 right-0 md:absolute md:bottom-6 md:left-6 md:right-6 bg-primary p-3 rounded-t-lg md:rounded-8">
+            <p className="text-center font-poppins font-bold text-background text-sm md:text-base">
               Complete by {formatDate(playerEvolutions[0].expiryDate)}
             </p>
           </div>

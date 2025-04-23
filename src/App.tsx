@@ -181,11 +181,11 @@ function App() {
   ]);
 
   return (
-    <div className="min-h-screen bg-background text-text-light">
+    <div className="min-h-screen bg-background text-text-light w-full overflow-x-hidden">
       <Header onLoadEvolutions={handleLoadEvolutions} />
       
       <div className="container mx-auto px-4 pb-20">
-        {loading ? (
+      {loading ? (
           <div className="flex items-center justify-center min-h-screen">
             <Loader2 className="animate-spin text-primary" size={48} />
           </div>
@@ -196,7 +196,9 @@ function App() {
             onBack={handleBackToPlayers}
           />
         ) : (
-          <>
+          <div className='mt-20'>
+            
+          
             <EvolutionsCarousel 
               evolutions={evolutions}
               selectedEvolutions={filters.selectedEvolutions}
@@ -218,7 +220,8 @@ function App() {
               evolutions={evolutions}
               onSelectPlayer={handleSelectPlayer}
             />
-          </>
+            </div>
+         
         )}
       </div>
     </div>
